@@ -10,15 +10,15 @@ CREATE TABLE event (
 
 CREATE TABLE markets_history (
 	id SERIAL PRIMARY KEY,
-	ticker	TEXT, -- Ticker of the target market.
-	yes_price	SMALLINT, -- Price for the last traded yes contract on the market by the timestamp in the request (ts).
+	ticker TEXT, -- Ticker of the target market.
+	yes_price SMALLINT, -- Price for the last traded yes contract on the market by the timestamp in the request (ts).
 	yes_bid	SMALLINT, -- Price for the highest YES buy offer on the market by the timestamp in the request (ts).
-	yes_ask	SMALLINT, -- Price for the lowest YES sell offer on the market by the timestamp in the request (ts).
-	no_bid	SMALLINT, -- Price for the highest NO buy offer on the market by the timestamp in the request (ts).
-	no_ask	SMALLINT, -- Price for the lowest NO sell offer on the market by the timestamp in the request (ts).
-	volume	INTEGER, -- Number of contracts bought on the market by the timestamp in the request (ts).
-	open_interest	INTEGER, -- Number of contracts bought on the market by the timestamp in the request (ts) disconsidering netting.
-	ts	INTEGER -- Unix timestamp for the current statistics entry.
+	yes_ask SMALLINT, -- Price for the lowest YES sell offer on the market by the timestamp in the request (ts).
+	no_bid SMALLINT, -- Price for the highest NO buy offer on the market by the timestamp in the request (ts).
+	no_ask SMALLINT, -- Price for the lowest NO sell offer on the market by the timestamp in the request (ts).
+	volume INTEGER, -- Number of contracts bought on the market by the timestamp in the request (ts).
+	open_interest INTEGER, -- Number of contracts bought on the market by the timestamp in the request (ts) disconsidering netting.
+	ts INTEGER -- Unix timestamp for the current statistics entry.
 );
 
 CREATE TABLE markets (
@@ -52,7 +52,7 @@ CREATE TABLE markets (
 	yes_bid SMALLINT -- Price for the highest YES buy offer on this market.
 );
 CREATE TABLE series ( -- Represents a group of events that have the same underlying source.
-	id	SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	series_ticker TEXT, -- Ticker that identifies this series.
 	strike_date INTEGER, 
 	strike_period TEXT,
