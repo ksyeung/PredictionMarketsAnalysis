@@ -8,7 +8,7 @@ CREATE TABLE event (
 	category TEXT -- Event category.
 );
 
-CREATE TABLE markets_history (
+CREATE TABLE market_history (
 	id SERIAL PRIMARY KEY,
 	ticker TEXT, -- Ticker of the target market.
 	yes_price SMALLINT, -- Price for the last traded yes contract on the market by the timestamp in the request (ts).
@@ -21,7 +21,7 @@ CREATE TABLE markets_history (
 	ts INTEGER -- Unix timestamp for the current statistics entry.
 );
 
-CREATE TABLE markets (
+CREATE TABLE market (
 	ticker TEXT PRIMARY KEY,
 	can_close_early BOOLEAN, -- If true then this market can close earlier then the time provided on close_time.
 	cap_strike INTEGER,
@@ -64,7 +64,7 @@ CREATE TABLE series ( -- Represents a group of events that have the same underly
 CREATE TABLE trades (
 	trade_id TEXT PRIMARY KEY, -- Unique identifier for this trade.
 	foreign_ticker TEXT,
-	FOREIGN KEY (foreign_ticker) REFERENCES markets (ticker), -- Unique identifier for markets.
+	FOREIGN KEY (foreign_ticker) REFERENCES market (ticker), -- Unique identifier for markets.
 	count SMALLINT, -- Number of contracts to be bought or sold.
 	created_time TEXT, -- ISO 8601 spec datetime (ex: 2022-11-30T15:00:00Z)
 	yes_price SMALLINT, -- Yes price for this trade in cents.
