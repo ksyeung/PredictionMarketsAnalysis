@@ -3,10 +3,10 @@ CREATE TYPE enum_strike_type AS ENUM ('unknown', 'greater', 'less', 'greater_or_
 CREATE TYPE enum_taker_side AS ENUM ('yes', 'no');
 
 CREATE TABLE event (
-	id	SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	event_ticker TEXT, -- Unique identifier for events.
 	category TEXT -- Event category.
-)
+);
 
 CREATE TABLE markets_history (
 	id SERIAL PRIMARY KEY,
@@ -63,7 +63,8 @@ CREATE TABLE series ( -- Represents a group of events that have the same underly
 
 CREATE TABLE trades (
 	trade_id TEXT PRIMARY KEY, -- Unique identifier for this trade.
-	ticker TEXT REFERENCES tickers (ticker), -- Unique identifier for markets.
+	foreign_ticker TEXT,
+	FOREIGN KEY (foreign_ticker) REFERENCES markets (ticker), -- Unique identifier for markets.
 	count SMALLINT, -- Number of contracts to be bought or sold.
 	created_time TEXT, -- ISO 8601 spec datetime (ex: 2022-11-30T15:00:00Z)
 	yes_price SMALLINT, -- Yes price for this trade in cents.
